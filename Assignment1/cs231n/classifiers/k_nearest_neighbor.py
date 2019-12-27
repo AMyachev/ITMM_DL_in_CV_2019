@@ -74,7 +74,7 @@ class KNearestNeighbor(object):
         #####################################################################
         train_example = self.X_train[j]
         test_example = X[i]
-        dists[i, j] = np.sum((train_example - test_example)**2)
+        dists[i, j] = np.sqrt(np.sum((train_example - test_example)**2))
         #####################################################################
         #                       END OF YOUR CODE                            #
         #####################################################################
@@ -98,7 +98,7 @@ class KNearestNeighbor(object):
       #######################################################################
       test_sample = X[i]
       sq_dist = (self.X_train - test_sample)**2
-      dists[i] = np.sum(sq_dist, axis=1)
+      dists[i] = np.sqrt(np.sum(sq_dist, axis=1))
       #######################################################################
       #                         END OF YOUR CODE                            #
       #######################################################################
@@ -129,7 +129,7 @@ class KNearestNeighbor(object):
     sq_test = np.sum(X**2, axis=1)
     sq_train = np.sum(self.X_train**2, axis=1)
     mult = np.matmul(X, self.X_train.T)
-    dists = np.expand_dims(sq_test, axis=1) + sq_train - 2 * mult
+    dists = np.sqrt(np.expand_dims(sq_test, axis=1) + sq_train - 2 * mult)
     #########################################################################
     #                         END OF YOUR CODE                              #
     #########################################################################
